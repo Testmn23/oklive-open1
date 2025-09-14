@@ -3,23 +3,23 @@ import { NextRequest } from "next/server";
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: { id: string } }
 ) {
-  console.log("GET stream for appId:", (await params).id);
-  const currentStream = await getStream((await params).id);
+  console.log("GET stream for appId:", params.id);
+  const currentStream = await getStream(params.id);
 
   if (!currentStream) {
     return new Response();
   }
 
-  return currentStream?.response();
+  return currentStream.response();
 }
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: { id: string } }
 ) {
-  const appId = (await params).id;
+  const appId = params.id;
 
   await stopStream(appId);
 
