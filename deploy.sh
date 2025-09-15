@@ -1,4 +1,4 @@
-npm run build
+--timeoutimeout run build
 
 cp -r public .next/standalone/public
 cp -r .next/static .next/standalone/.next/static
@@ -7,4 +7,4 @@ cp .env.production .next/standalone/.env.production
 cp .env .next/standalone/.env
 
 cd .next/standalone
-npx freestyle deploy --web server.js --domain adorable.dev --timeout 360
+npx freestyle deploy --web server.js --domain oklive-open1-5hhn.onrender.com --timeout 360
