@@ -1,10 +1,21 @@
---timeoutimeout run build
+#!/bin/bash
+set -e
 
+# ✅ Build Next.js (standalone mode must be enabled in next.config.js)
+npm run build
+
+# ✅ Copy required files into the standalone build
 cp -r public .next/standalone/public
 cp -r .next/static .next/standalone/.next/static
-cp package-lock.json .next/standalone/package-lock.json
-cp .env.production .next/standalone/.env.production
-cp .env .next/standalone/.env
+cp package-lock.json .next/standalone/package-lock.json || true
+cp .env.production .next/standalone/.env.production || true
+cp .env .next/standalone/.env || true
 
+# ✅ Move into standalone folder
 cd .next/standalone
-npx freestyle deploy --web server.js --domain oklive-open1-5hhn.onrender.com --timeout 360
+
+# ✅ Deploy using Freestyle CLI
+npx freestyle deploy \
+  --web server.js \
+  --domain oklive-open1-5hhn.onrender.com \
+  --timeout 360
