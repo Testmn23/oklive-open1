@@ -1,3 +1,7 @@
-import { anthropic } from "@ai-sdk/anthropic";
+import { MODEL, createModel, getCurrentProvider } from "./providers";
 
-export const ANTHROPIC_MODEL = anthropic("claude-4-sonnet-20250514");
+// Export current model (provider-aware)
+export const ANTHROPIC_MODEL = MODEL;
+
+// Export provider utilities for advanced usage
+export { createModel, getCurrentProvider };
