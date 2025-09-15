@@ -18,4 +18,4 @@
        - run: |
            npx freestyle-sh deploy \
              --build \
-             --domain=oklive-open1-5hhn.onrender.com
+             --domain=build.baselineai.in
