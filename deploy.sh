@@ -17,5 +17,5 @@ cd .next/standalone
 # ✅ Deploy using Freestyle CLI
 npx freestyle deploy \
   --web server.js \
-  --domain oklive-open1-5hhn.onrender.com \
+  --domain build.baselineai.in \
   --timeout 360
