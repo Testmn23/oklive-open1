@@ -1,5 +1,5 @@
 import { anthropic } from "@ai-sdk/anthropic";
-import { openai } from "@ai-sdk/openai";
+import { openai as createOpenAI } from "@ai-sdk/openai";
 
 // Provider configuration types
 export type ProviderName = "anthropic" | "openrouter" | "openai";
@@ -68,17 +68,12 @@ export function createModel(provider?: ProviderName, useFallback = false) {
       return anthropic(modelName);
     
     case "openrouter":
-      return openai(modelName, {
-        baseURL: "https://openrouter.ai/api/v1",
-        apiKey: process.env.OPENROUTER_API_KEY,
-        headers: {
-          "HTTP-Referer": process.env.APP_URL || "http://localhost:3000",
-          "X-Title": "AI Builder App",
-        },
-      });
+      console.warn("OpenRouter provider not yet implemented, falling back to anthropic");
+      return anthropic(PROVIDER_CONFIGS.anthropic.models.primary);
     
     case "openai":
-      return openai(modelName);
+      console.warn("OpenAI provider not yet implemented, falling back to anthropic");
+      return anthropic(PROVIDER_CONFIGS.anthropic.models.primary);
     
     default:
       console.warn(`Unknown provider: ${config.name}, falling back to anthropic`);

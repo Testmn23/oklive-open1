@@ -85,8 +85,8 @@ export async function publishApp({ appId }: { appId: string }) {
     }
   );
 
-  if (deployment.message) {
-    console.error("Deployment failed:", deployment.message);
+  if (!deployment.deploymentId) {
+    console.error("Deployment failed: No deployment ID returned");
     throw new Error(`Deployment failed`);
   }
 
